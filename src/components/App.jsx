@@ -1,16 +1,20 @@
-export const App = () => {
+import React from 'react'
+import PropTypes from 'prop-types'
+import { getTrendyMovies } from 'Api/Movie';
+
+export function App(props) {
+  getTrendyMovies();
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
-  );
-};
+    <>
+    
+    </>
+  )
+}
+
+App.propTypes = {
+
+}
+
+
+
+
