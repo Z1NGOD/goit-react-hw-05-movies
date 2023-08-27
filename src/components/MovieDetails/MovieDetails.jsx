@@ -39,7 +39,7 @@ function MovieDetails() {
 
     fetchData();
   }, [detailsData, movie_id, setMovieDetails]);
-
+  console.log(location.state.from)
   return (
     <>
       <StyledNavLink to={location.state.from ? location.state.from : '/'}>
@@ -63,10 +63,10 @@ function MovieDetails() {
       <SecondaryText>Overview: {movieDetails.overview}</SecondaryText>
       <List>
         Additional information:
-        <StyledNavLink to="cast">
+        <StyledNavLink to="cast" state={{ from: location.state.from }}>
           <Paragraph>Cast:</Paragraph>
         </StyledNavLink>
-        <StyledNavLink to="reviews">
+        <StyledNavLink to="reviews" state={{from: location.state.from}}>
           <Paragraph>Reviews:</Paragraph>
         </StyledNavLink>
       </List>

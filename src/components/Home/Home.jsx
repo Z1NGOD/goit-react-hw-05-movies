@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { List, ListItem, NewFeature, StyledNavLink } from 'ui/everyUi.styled';
 import { UseGlobalContext } from 'Context/stateContext';
 
@@ -17,7 +16,5 @@ function Home() {
     </List>
   );
 }
-
-Home.propTypes = {};
 
 export default Home;
