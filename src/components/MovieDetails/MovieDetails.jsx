@@ -19,7 +19,7 @@ function calculatePercentage(score) {
 
 function MovieDetails() {
   const { movie_id } = useParams();
-  const { movieDetails, setMovieDetails } = UseGlobalContext();
+  const { movieDetails, setMovieDetails, location } = UseGlobalContext();
 
   const detailsData = useMemo(
     () => getMovieDetails({ id: movie_id }),
@@ -42,7 +42,10 @@ function MovieDetails() {
 
   return (
     <>
-      <Btn>Go back</Btn>
+      <StyledNavLink to={location.state.from ? location.state.from : '/'}>
+        <Btn>Go back</Btn>
+      </StyledNavLink>
+
       <Img
         src={
           movieDetails.poster_path ? (

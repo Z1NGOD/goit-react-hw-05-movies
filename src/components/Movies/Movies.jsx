@@ -4,7 +4,7 @@ import { SearchMovies } from 'Api/Movie';
 import { UseGlobalContext } from 'Context/stateContext';
 
 function Movies() {
-  const { searchParams, setSearchParams } = UseGlobalContext();
+  const { searchParams, setSearchParams, location } = UseGlobalContext();
   const searchQuery = searchParams.get('query') || '';
 
   const [movies, setMovies] = useState([]);
@@ -42,7 +42,7 @@ function Movies() {
       </form>
       <List>
         {movies.map(item => (
-          <StyledNavLink to={`/movies/${item.id}`} key={item.id}>
+          <StyledNavLink to={`/movies/${item.id}`} key={item.id} state={{ from: location.pathname }}>
             <ListItem>
               <NewFeature>{item.title}</NewFeature>
             </ListItem>

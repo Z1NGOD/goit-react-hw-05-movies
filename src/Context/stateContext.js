@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useMemo } from 'react';
 import { getTrendyMovies } from '../Api/Movie';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 export const Context = createContext();
 
 export function GlobalContext({ children }) {
@@ -15,7 +15,7 @@ export function GlobalContext({ children }) {
     setMovies(prevMovies => [...prevMovies, ...trendyMovies]);
   };
   useMemo(() => getAllTrendyMovies(), []);
-
+  const location = useLocation();
   return (
     <Context.Provider
       value={{
@@ -29,6 +29,7 @@ export function GlobalContext({ children }) {
         setMovieReviews,
         searchParams,
         setSearchParams,
+        location,
       }}
     >
       {children}
