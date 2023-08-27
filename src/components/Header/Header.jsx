@@ -1,21 +1,19 @@
-import React from 'react'
-import { Paragraph,HeaderEl } from 'ui/everyUi.styled';
-import { NavLink } from 'react-router-dom';
+import React from 'react';
+import {  HeaderEl, StyledNavLink, NewFeature, List } from 'ui/everyUi.styled';
 
 function Header() {
   return (
-    <div>
-      <HeaderEl>
-        <NavLink to="/">
-          <Paragraph>Home</Paragraph>
-        </NavLink>
-        <NavLink to="/movies">
-          <Paragraph>Movies</Paragraph>
-        </NavLink>
-      </HeaderEl>
-    </div>
+    <HeaderEl>
+      <List>
+        <StyledNavLink to="/">
+          <NewFeature>Home</NewFeature>
+        </StyledNavLink>
+        <StyledNavLink to="/movies">
+          <NewFeature>Movies</NewFeature>
+        </StyledNavLink>
+      </List>
+    </HeaderEl>
   );
 }
 
-export default Header
-
+export default Header;

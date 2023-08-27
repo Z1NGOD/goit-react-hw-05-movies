@@ -2,9 +2,8 @@
 
 body {
   margin: 0;
-  font-family: 'Georgia',
-    serif;
-  background-color: #1a1a1a;
-  color: #eee;
+  font-family: 'Arial', sans-serif;
+  background-color: #F5F5F5;
+  color: #333;
   line-height: 1.6;
 }
