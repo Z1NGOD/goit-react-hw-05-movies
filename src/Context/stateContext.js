@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useMemo } from 'react';
 import { getTrendyMovies } from '../Api/Movie';
+import { useSearchParams } from 'react-router-dom';
 export const Context = createContext();
 
 export function GlobalContext({ children }) {
@@ -7,7 +8,7 @@ export function GlobalContext({ children }) {
   const [movieDetails, setMovieDetails] = useState({});
   const [movieCredits, setMovieCredits] = useState({});
   const [movieReviews, setMovieReviews] = useState({});
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
   const getAllTrendyMovies = async () => {
     const response = await getTrendyMovies();
     const trendyMovies = response.results;
@@ -26,8 +27,8 @@ export function GlobalContext({ children }) {
         setMovieCredits,
         movieReviews,
         setMovieReviews,
-        searchQuery,
-        setSearchQuery,
+        searchParams,
+        setSearchParams,
       }}
     >
       {children}

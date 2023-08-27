@@ -4,11 +4,13 @@ import { SearchMovies } from 'Api/Movie';
 import { UseGlobalContext } from 'Context/stateContext';
 
 function Movies() {
-  const { searchQuery, setSearchQuery } = UseGlobalContext();
+  const { searchParams, setSearchParams } = UseGlobalContext();
+  const searchQuery = searchParams.get('query') || '';
+
   const [movies, setMovies] = useState([]);
 
   const handleSearchSubmit = async e => {
-    e.preventDefault(); // Prevent default form submission behavior
+    e.preventDefault(); 
 
     if (searchQuery === '') return;
 
@@ -23,7 +25,7 @@ function Movies() {
   const handleSearchChange = e => {
     const search = e.target.value;
     const normalizedSearch = search.toLowerCase().trim();
-    setSearchQuery(normalizedSearch);
+    setSearchParams({query:normalizedSearch});
   };
 
   return (
