@@ -25,7 +25,7 @@ function Movies() {
   const handleSearchChange = e => {
     const search = e.target.value;
     const normalizedSearch = search.toLowerCase().trim();
-    setSearchParams({query:normalizedSearch});
+    normalizedSearch ? setSearchParams({query:normalizedSearch}) : setSearchParams({});
   };
 
   return (
