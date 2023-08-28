@@ -114,6 +114,21 @@ const Input = styled.input`
   border-radius: 5px;
   width: 100%;
   margin-bottom: 12px;
+  transition: border-color 0.3s ease-in-out;
+
+  ::placeholder {
+    color: #aaa;
+    transition: color 0.3s ease-in-out;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: ${primaryColor};
+  }
+
+  &:focus::placeholder {
+    color: ${primaryColor};
+  }
 `;
 
 const Container = styled.div`

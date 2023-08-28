@@ -2,7 +2,8 @@ import { UseGlobalContext } from 'Context/stateContext';
 import {  HeaderEl, StyledNavLink, NewFeature, List } from 'ui/everyUi.styled';
 
 function Header() {
-  const {location} = UseGlobalContext();
+  const { location } = UseGlobalContext();
+  
   return (
     <HeaderEl>
       <List>

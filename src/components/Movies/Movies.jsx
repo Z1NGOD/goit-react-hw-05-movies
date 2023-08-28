@@ -1,5 +1,12 @@
-import { useState } from 'react';
-import { Btn, Input, List, ListItem, NewFeature, StyledNavLink } from 'ui/everyUi.styled';
+import { useState, useEffect } from 'react';
+import {
+  Btn,
+  Input,
+  List,
+  ListItem,
+  NewFeature,
+  StyledNavLink,
+} from 'ui/everyUi.styled';
 import { SearchMovies } from 'Api/Movie';
 import { UseGlobalContext } from 'Context/stateContext';
 
@@ -9,14 +16,26 @@ function Movies() {
 
   const [movies, setMovies] = useState([]);
 
+  useEffect(() => {
+    const storedMovies = localStorage.getItem('searchedMovies');
+    if (storedMovies) {
+      setMovies(JSON.parse(storedMovies));
+    }
+  }, []);
+
   const handleSearchSubmit = async e => {
-    e.preventDefault(); 
+    e.preventDefault();
 
     if (searchQuery === '') return;
 
     try {
       const searchedMovies = await SearchMovies({ query: searchQuery });
       setMovies(searchedMovies.results);
+     
+      localStorage.setItem(
+        'searchedMovies',
+        JSON.stringify(searchedMovies.results)
+      );
     } catch (error) {
       console.error('Error fetching movie details:', error.message);
     }
@@ -25,7 +44,9 @@ function Movies() {
   const handleSearchChange = e => {
     const search = e.target.value;
     const normalizedSearch = search.toLowerCase().trim();
-    normalizedSearch ? setSearchParams({query:normalizedSearch}) : setSearchParams({});
+    normalizedSearch
+      ? setSearchParams({ query: normalizedSearch })
+      : setSearchParams({});
   };
 
   return (
@@ -34,7 +55,7 @@ function Movies() {
         <Input
           onChange={handleSearchChange}
           value={searchQuery}
-          placeholder="Search"
+          placeholder="Search your favorite movie"
           type="text"
           required
         />
@@ -42,7 +63,11 @@ function Movies() {
       </form>
       <List>
         {movies.map(item => (
-          <StyledNavLink to={`/movies/${item.id}`} key={item.id} state={{ from: location.pathname }}>
+          <StyledNavLink
+            to={`/movies/${item.id}`}
+            key={item.id}
+            state={{ from: location.pathname }}
+          >
             <ListItem>
               <NewFeature>{item.title}</NewFeature>
             </ListItem>
