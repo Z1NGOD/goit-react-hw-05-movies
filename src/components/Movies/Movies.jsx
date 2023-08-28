@@ -58,6 +58,7 @@ function Movies() {
           placeholder="Search your favorite movie"
           type="text"
           required
+          autoFocus
         />
         <Btn type="submit">Search</Btn>
       </form>
